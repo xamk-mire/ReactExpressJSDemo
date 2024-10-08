@@ -25,7 +25,7 @@ Tässä tehtävässä opit, kuinka yhdistää Express.js React-sovellukseen, jot
 1. **Luo React-sovellus** Viten avulla komennolla:
    ```bash
    npm create vite@latest react-expressjs-demo --template react-ts
-   cd my-app
+   cd react-expressjs-demo
    npm install
    ```
 
