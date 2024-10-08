@@ -178,6 +178,54 @@ Tässä tehtävässä opit, kuinka yhdistää Express.js React-sovellukseen, jot
 
 3. **Testaa sovellusta** avaamalla selaimessa `http://localhost:5173` (Vite kehityspalvelimen osoite). React-sovelluksen pitäisi näyttää viestin, joka tulee Express-palvelimelta.
 
+4. **Tutki mitä toimiiko** sovelluksesi oikein -> tuleeko Express.js serverisi viesti perille
+   - Käytä selaimesi development työkaluja apuna
+
+5. **Jos saat CORS-virheen**, tarkoittaa se että frontend yritti tehdä pyynnön backend-palvelimelle, mutta palvelin ei sallinut pyyntöä toiselta verkkotunnukselta. Tämä on yleinen ongelma, kun frontend ja backend toimivat eri osoitteissa (esim. http://localhost:5173 frontendille ja http://localhost:5000 backendille).
+
+### Vaihe 4: CORS-virheiden ratkaiseminen Express.js-palvelimella
+
+1. Voit ratkaista CORS-ongelman käyttämällä cors-kirjastoa.
+   - Siirry server-kansioon ja asenna cors seuraavalla komennolla:
+ ```bash
+   npm install cors
+   ```
+
+2. Käytä cors-kirjastoa Express-palvelimessa:
+   - Lisää cors Express-palvelimen määrittelyyn server/src/index.ts -tiedostossa:
+ ```typescript
+	import express, { Request, Response } from 'express';
+	import cors from 'cors';
+	
+	const app = express();
+	const PORT = 5000;
+	
+	// Käytä CORSia, jotta frontend voi tehdä API-kutsuja
+	app.use(cors({
+	  origin: 'http://localhost:5173', // Frontendin osoite
+	  methods: ['GET', 'POST'], // Salli vain tarvittavat HTTP-metodit
+	}));
+	
+	app.get('/api/hello', (req: Request, res: Response) => {
+	  res.json({ message: 'Hello from Express!' });
+	});
+	
+	app.listen(PORT, () => {
+	  console.log(`Server is running on http://localhost:${PORT}`);
+	});
+
+   ```
+   Tässä origin määrittää, mistä osoitteista tulevat pyynnöt ovat sallittuja (tässä tapauksessa React-sovelluksen kehityspalvelin osoitteessa http://localhost:5173).
+
+3. Asenna vielä server toteutuksellesi @types/cors seuraavalla komennolla:
+ ```bash
+   npm install @types/cors --save-dev
+   ```
+   Tämä antaa TypeScriptille tarvittavat tyypit cors-kirjastoa varten, jolloin voit käyttää sitä sujuvasti Express-sovelluksessasi ilman tyypitysongelmia.
+
+4. **Käynnistä palvelin uudelleen**: Varmista, että palvelin on käynnissä päivitettynä ja testaa pyyntöä uudelleen frontendista.
+   - Käyttämällä selaimesi development työkalua, tutki mitä network tabilla tapahtuu, kun päivität sivua
+
 ---
 
 ### Tehtävän viimeistely
