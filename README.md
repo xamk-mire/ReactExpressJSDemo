@@ -37,7 +37,7 @@ Tässä tehtävässä opit, kuinka yhdistää Express.js React-sovellukseen, jot
  
 3. Konfiguroi Tailwind CSS `tailwind.config.js`-tiedostoon seuraavasti:
 	```javascript
-   /** @type {import('tailwindcss').Config} */
+   	/** @type {import('tailwindcss').Config} */
 	module.exports = {
 	  content: [
 	    "./index.html",
@@ -52,7 +52,8 @@ Tässä tehtävässä opit, kuinka yhdistää Express.js React-sovellukseen, jot
 
 4. Luo `src/index.css` (jos sitä ei ole) ja lisää seuraavat rivit:
    ```css
-   @tailwind base;
+   
+	@tailwind base;
 	@tailwind components;
 	@tailwind utilities;
 
@@ -74,23 +75,29 @@ Tässä tehtävässä opit, kuinka yhdistää Express.js React-sovellukseen, jot
 
 1. **Alusta uusi Node.js-projekti** sovelluksen juurikansioon (eri kansioon frontendin kanssa) komennolla:
    ```bash
-   mkdir server
-cd server
-npm init -y
-npm install express typescript ts-node nodemon @types/express
+   
+	mkdir server
+	cd server
+	npm init -y
+	npm install express typescript ts-node nodemon @types/express
+   
    ```
    
 2. **Luo TypeScript-konfiguraatio** `server`-kansioon:
    ```bash
-   npx tsc --init
+   
+	npx tsc --init
+   
    ```
    
    Muokkaa `tsconfig.json` -tiedostoa ja varmista, että seuraavat asetukset ovat käytössä:
    
 	 ```json
-   "outDir": "./dist",
+  
+   	"outDir": "./dist",
 	"rootDir": "./src",
 	"esModuleInterop": true
+  
    ```
 
 3. **Luo yksinkertainen Express-palvelin** `server/src`-kansioon ja tallenna se nimellä `index.ts`:
@@ -112,12 +119,15 @@ npm install express typescript ts-node nodemon @types/express
    
 4. **Käynnistä palvelin**:
    ```bash
+   
    npx ts-node src/index.ts
+   
    ```
    
 5. Tai vaihtoehtoisesti voit lisätä `nodemon`-käynnistysskriptin `package.json`-tiedostoon:
 	```json
-   "scripts": {
+ 
+   	"scripts": {
 	  "start": "nodemon src/index.ts"
 	}
 
@@ -125,7 +135,9 @@ npm install express typescript ts-node nodemon @types/express
    
 6. Käynnistä palvelin komennolla:
    ```bash
+   
    npm start
+   
    ```
 
 ---
