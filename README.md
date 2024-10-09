@@ -13,7 +13,7 @@ Tässä tehtävässä opit, kuinka yhdistää Express.js React-sovellukseen, jot
 ## Teknologiat
 
 - **React:** Front-end-sovelluskehyksenä.
-- TypeScript: Muuttujien ja parametrien datan tyypitykseen.
+- **TypeScript**: Muuttujien ja parametrien datan tyypitykseen.
 - **Vite:** Nopea kehitystyökalu React-sovelluksille.
 - **TypeScript:** JavaScriptin superset, joka lisää tyyppitarkistuksen.
 - **Tailwind CSS:** Tyylityökirjasto.
